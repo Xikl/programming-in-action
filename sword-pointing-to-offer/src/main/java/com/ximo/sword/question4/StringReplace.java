@@ -57,4 +57,32 @@ public class StringReplace {
 
     }
 
+    /**
+     * 替换空格为特定字符串
+     *
+     * @param string 字符串
+     * @return 字符串
+     */
+    public static String replaceBlank(String string) {
+        if (string == null) {
+            return null;
+        }
+        StringBuilder originStr = new StringBuilder(string);
+        StringBuilder newStr = new StringBuilder();
+        int fromIndex = 0;
+        int index = 0;
+        while (index <= originStr.length()) {
+            index = originStr.indexOf(" ", fromIndex);
+            if (index >= 0) {
+                newStr.append(originStr.substring(fromIndex, index)).append("%20");
+                fromIndex = ++index;
+            } else {
+                //在相应的位置开始查找 没有空格
+                newStr.append(originStr.substring(fromIndex, originStr.length()));
+                break;
+            }
+        }
+        return newStr.toString();
+    }
+
 }
