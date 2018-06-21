@@ -74,10 +74,12 @@ public class StringReplace {
         while (index <= originStr.length()) {
             index = originStr.indexOf(" ", fromIndex);
             if (index >= 0) {
+                //截取fromIndex 到 Index（空格出现的位置）字符串 再加上 特殊字符
                 newStr.append(originStr.substring(fromIndex, index)).append("%20");
+                //查找位置跳过空格
                 fromIndex = ++index;
             } else {
-                //在相应的位置开始查找 没有空格
+                //找不到空格的时候，直接截取后面所有的字符串拼接
                 newStr.append(originStr.substring(fromIndex, originStr.length()));
                 break;
             }
